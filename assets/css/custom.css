@@ -1,0 +1,277 @@
+/* ============================
+   BYTESITE Dark Theme Styles
+   ----------------------------
+   How to read this file:
+   - Variables: change colors in one place
+   - Base: global typography and page background
+   - Components: navbar, buttons, cards, sections, etc.
+   - Utilities: helpers used across the site
+   ============================ */
+
+/* ---------- Theme Variables ---------- */
+:root {
+    /* Core palette */
+    --bg: #0b0f14;              /* page background */
+    --bg-soft: #0f141b;         /* section background */
+    --card: #111720;            /* card background */
+    --card-2: #0e141c;          /* alt card */
+    --border: #1f2a37;          /* soft border */
+    --muted: #9aa4b2;           /* secondary text */
+    --text: #e6edf3;            /* primary text */
+  
+    /* Brand accent (orange) */
+    --orange: #ff7a18;
+    --orange-700: #fb6a00;
+    --orange-300: #ffb86b;
+  
+    /* Other accents */
+    --primary: #3b82f6;         /* blue */
+    --success: #22c55e;         /* green */
+    --info: #06b6d4;            /* cyan */
+    --warning: #f59e0b;         /* yellow */
+  
+    /* Effects */
+    --shadow: 0 10px 30px rgba(0,0,0,.35);
+    --shadow-soft: 0 6px 20px rgba(0,0,0,.25);
+    --blur: saturate(120%) blur(8px);
+    --radius: 14px;
+    --radius-sm: 10px;
+  
+    /* Layout */
+    --section-pad-y: 5rem;
+  }
+  
+  /* ---------- Base & Typography ---------- */
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    background: radial-gradient(1200px 600px at 20% -10%, rgba(255,122,24,0.10), transparent 40%),
+                radial-gradient(900px 500px at 100% 10%, rgba(59,130,246,0.08), transparent 45%),
+                var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    line-height: 1.6;
+  }
+  
+  a { color: var(--text); }
+  a:hover { color: #fff; }
+  
+  img { max-width: 100%; height: auto; }
+  
+  /* Smooth transitions for interactive elements */
+  .btn, .card, .navbar, .nav-link, .accordion-button {
+    transition: all .25s ease;
+  }
+  
+  /* ---------- Navbar ---------- */
+  .navbar {
+    background: rgba(10, 14, 20, 0.6);
+    backdrop-filter: var(--blur);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .navbar .navbar-brand {
+    letter-spacing: .5px;
+  }
+  
+  .navbar .nav-link {
+    color: var(--muted);
+    margin: 0 .3rem;
+  }
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active {
+    color: #fff;
+  }
+  
+  /* Toggler better contrast */
+  .navbar .navbar-toggler {
+    background: rgba(255,255,255,.08);
+  }
+  
+  /* ---------- Buttons ---------- */
+  .btn-orange {
+    background: linear-gradient(135deg, var(--orange), var(--orange-700));
+    color: #111;
+    border: none;
+    box-shadow: 0 8px 20px rgba(251,106,0,.35);
+  }
+  .btn-orange:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    color: #111;
+  }
+  
+  .btn-outline-light {
+    border-color: rgba(255,255,255,.25);
+    color: var(--text);
+  }
+  .btn-outline-light:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.35);
+    color: #fff;
+  }
+  
+  /* ---------- Utilities ---------- */
+  .text-orange { color: var(--orange) !important; }
+  .text-light-gray { color: var(--muted) !important; }
+  
+  .bg-dark-card {
+    background: linear-gradient(180deg, var(--card), var(--card-2));
+    border-color: var(--border) !important;
+    box-shadow: var(--shadow-soft);
+  }
+  .border-orange { border-color: rgba(255,122,24,.45) !important; }
+  .border-secondary { border-color: var(--border) !important; }
+  
+  .bg-gradient-orange {
+    background: linear-gradient(135deg, var(--orange-300), var(--orange));
+  }
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #60a5fa, var(--primary));
+  }
+  .bg-gradient-success {
+    background: linear-gradient(135deg, #86efac, var(--success));
+  }
+  .bg-gradient-warning {
+    background: linear-gradient(135deg, #facc15, var(--warning));
+  }
+  
+  /* Rounded */
+  .rounded-3 { border-radius: var(--radius) !important; }
+  .rounded-pill { border-radius: 999px !important; }
+  
+  /* ---------- Hero Section ---------- */
+  /* Tip: This creates a full-screen hero with subtle gradients and an overlaid pattern */
+  .hero-section {
+    position: relative;
+    padding-top: 6rem; /* room for fixed navbar */
+    background:
+      radial-gradient(1000px 600px at 80% 10%, rgba(59,130,246,.10), transparent 40%),
+      radial-gradient(1200px 700px at 0% 70%, rgba(255,122,24,.10), transparent 45%);
+    overflow: hidden;
+  }
+  
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px;
+    mask-image: radial-gradient(1000px 700px at 50% 10%, rgba(0,0,0,.8), transparent 70%);
+    pointer-events: none;
+  }
+  
+  /* Floating skill cards animation */
+  .floating-cards .card {
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    box-shadow: var(--shadow-soft);
+  }
+  .floating-card-1 { animation: float1 7s ease-in-out infinite; }
+  .floating-card-2 { animation: float2 8s ease-in-out infinite; }
+  .floating-card-3 { animation: float1 9s ease-in-out infinite; }
+  .floating-card-4 { animation: float2 10s ease-in-out infinite; }
+  
+  @keyframes float1 {
+    0%,100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-8px) translateX(6px); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(-6px); }
+  }
+  
+  /* ---------- Section Cards & Pillars ---------- */
+  .pillar-card:hover,
+  .program-card:hover,
+  .pricing-card:hover,
+  .contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+  
+  /* ---------- Outcomes ---------- */
+  .outcome-item h5 { margin-bottom: .25rem; }
+  
+  /* ---------- Programs ---------- */
+  .program-card .badge {
+    opacity: .95;
+  }
+  
+  /* ---------- How It Works ---------- */
+  .step-number {
+    box-shadow: 0 8px 20px rgba(0,0,0,.3);
+  }
+  
+  /* ---------- Pricing ---------- */
+  .pricing-card .popular-badge {
+    box-shadow: 0 8px 20px rgba(255,122,24,.25);
+  }
+  
+  /* ---------- FAQ (Accordion) ---------- */
+  .accordion-dark .accordion-item {
+    background: var(--card);
+  }
+  .accordion-dark .accordion-button {
+    color: var(--text);
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion-dark .accordion-button:not(.collapsed) {
+    background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+    color: #fff;
+  }
+  .accordion-dark .accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--border);
+  }
+  .accordion-dark .accordion-button::after {
+    filter: invert(1) brightness(1.4);
+    transform: rotate(0);
+    transition: transform .2s ease;
+  }
+  .accordion-dark .accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+  }
+  
+  /* ---------- Forms ---------- */
+  .form-control, .form-select {
+    background: #0c121a !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: var(--orange) !important;
+    box-shadow: 0 0 0 .25rem rgba(251,106,0,.15) !important;
+  }
+  
+  /* ---------- Footer ---------- */
+  .footer-section {
+    background: rgba(255,255,255,.02);
+  }
+  
+  /* ---------- Back To Top ---------- */
+  .back-to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    padding: .7rem .9rem;
+    box-shadow: var(--shadow-soft);
+  }
+  .back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  /* ---------- Responsive tweaks ---------- */
+  @media (max-width: 991.98px) {
+    .hero-section { padding-top: 5.5rem; }
+  }
