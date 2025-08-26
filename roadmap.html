@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BYTESITE Roadmaps</title>
+  <meta name="description" content="Choose a domain to view a step-by-step learning and building roadmap." />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link href="assets/css/custom.css?v=2025-08-27-1" rel="stylesheet" />
+
+  <link rel="icon" type="image/x-icon" href="assets/images/logo/favicon.ico" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="index.html#home">
+        <span class="text-orange">BYTE</span><span class="text-white">SITE</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#programs">Internship</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#plans">Plans</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#programs">Domains</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="roadmap.html">Roadmap</a></li>
+          <li class="nav-item ms-2 me-1">
+            <button id="themeToggle" class="btn btn-sm theme-toggle" type="button" aria-label="Toggle color theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-orange px-4 py-2 ms-2 rounded-pill" href="index.html#contact">Apply Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="min-vh-50 d-flex align-items-center pt-5" style="padding-top: 96px !important;">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <div class="hero-content">
+            <h1 class="display-5 fw-bold mb-3 text-white">Choose Your Roadmap</h1>
+            <p class="lead text-light-gray">Select a domain to see a focused, step-by-step path from learning → building → showcasing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Domain Selector -->
+  <section class="py-4">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <a href="roadmap.html?domain=devops" class="text-decoration-none">
+            <div class="program-card bg-dark-card border border-primary h-100 p-3 rounded-3 text-center">
+              <div class="program-icon bg-primary text-white rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">
+                <i class="fab fa-docker"></i>
+              </div>
+              <h6 class="text-white mb-0">DevOps</h6>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="roadmap.html?domain=cloud" class="text-decoration-none">
+            <div class="program-card bg-dark-card border border-info h-100 p-3 rounded-3 text-center">
+              <div class="program-icon bg-info text-white rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">
+                <i class="fas fa-cloud"></i>
+              </div>
+              <h6 class="text-white mb-0">Cloud Computing</h6>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="roadmap.html?domain=ai" class="text-decoration-none">
+            <div class="program-card bg-dark-card border border-warning h-100 p-3 rounded-3 text-center">
+              <div class="program-icon bg-warning text-dark rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h6 class="text-white mb-0">AI / Prompt</h6>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="roadmap.html?domain=data" class="text-decoration-none">
+            <div class="program-card bg-dark-card border border-success h-100 p-3 rounded-3 text-center">
+              <div class="program-icon bg-success text-white rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">
+                <i class="fas fa-database"></i>
+              </div>
+              <h6 class="text-white mb-0">Data Engineering</h6>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Content -->
+  <section class="py-4">
+    <div class="container">
+      <div id="roadmapEmpty" class="text-center text-light-gray py-5">
+        <p class="mb-2">Pick a domain above to view the roadmap.</p>
+        <p class="small">Tip: You can bookmark a domain, e.g., roadmap.html?domain=devops</p>
+      </div>
+
+      <!-- DevOps -->
+      <div id="rm-devops" class="d-none">
+        <h3 class="text-white mb-3"><i class="fab fa-docker text-primary me-2"></i>DevOps Roadmap</h3>
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-primary h-100 p-3 rounded-3">
+              <h6 class="text-orange">Learn</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Linux + Shell fundamentals</li>
+                <li>Git & GitHub workflows</li>
+                <li>CI/CD basics (pipelines)</li>
+                <li>Containers: Docker, images</li>
+                <li>Kubernetes basics</li>
+                <li>Monitoring & logging</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-primary h-100 p-3 rounded-3">
+              <h6 class="text-orange">Build</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>CI/CD for a sample web app</li>
+                <li>Dockerize services</li>
+                <li>Deploy to K8s (minikube / cloud)</li>
+                <li>Set up basic observability</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-primary h-100 p-3 rounded-3">
+              <h6 class="text-orange">Showcase</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>GitHub repo with CI/CD badges</li>
+                <li>README with architecture diagram</li>
+                <li>Short demo video / screenshots</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud -->
+      <div id="rm-cloud" class="d-none">
+        <h3 class="text-white mb-3"><i class="fas fa-cloud text-info me-2"></i>Cloud Computing Roadmap</h3>
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-info h-100 p-3 rounded-3">
+              <h6 class="text-orange">Learn</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Cloud fundamentals (IaaS/PaaS)</li>
+                <li>IAM + Networking basics</li>
+                <li>Storage, Compute, Databases</li>
+                <li>Cost basics & regions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-info h-100 p-3 rounded-3">
+              <h6 class="text-orange">Build</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Deploy a static site via storage + CDN</li>
+                <li>Provision infra using Terraform</li>
+                <li>Set up monitoring/alerts</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-info h-100 p-3 rounded-3">
+              <h6 class="text-orange">Showcase</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Infra repo + diagrams</li>
+                <li>Deployed URL and metrics screenshots</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI / Prompt -->
+      <div id="rm-ai" class="d-none">
+        <h3 class="text-white mb-3"><i class="fas fa-brain text-warning me-2"></i>AI / Prompt Roadmap</h3>
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-warning h-100 p-3 rounded-3">
+              <h6 class="text-orange">Learn</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Prompt patterns & personas</li>
+                <li>Reasoning scaffolds</li>
+                <li>Evaluation and iteration</li>
+                <li>Safety & ethics</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-warning h-100 p-3 rounded-3">
+              <h6 class="text-orange">Build</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Task-specific prompt playbooks</li>
+                <li>Mini-agent workflows</li>
+                <li>Domain-specific assistants</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-warning h-100 p-3 rounded-3">
+              <h6 class="text-orange">Showcase</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Repo with prompts and evals</li>
+                <li>Demo gif/video of outputs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Engineering -->
+      <div id="rm-data" class="d-none">
+        <h3 class="text-white mb-3"><i class="fas fa-database text-success me-2"></i>Data Engineering Roadmap</h3>
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-success h-100 p-3 rounded-3">
+              <h6 class="text-orange">Learn</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>Python for data + SQL</li>
+                <li>Data modeling & warehousing</li>
+                <li>Batch vs streaming</li>
+                <li>Orchestration basics</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-success h-100 p-3 rounded-3">
+              <h6 class="text-orange">Build</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>ETL/ELT pipeline (ingest → transform → load)</li>
+                <li>Dashboard/report from warehouse</li>
+                <li>Optional: streaming mini-project</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pillar-card bg-dark-card border border-success h-100 p-3 rounded-3">
+              <h6 class="text-orange">Showcase</h6>
+              <ul class="text-light-gray small mb-0">
+                <li>GitHub repos + data schema diagram</li>
+                <li>Deployed dashboard screenshots/URL</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section py-4 border-top border-secondary">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="text-light-gray mb-2 mb-md-0">
+            <span class="text-orange fw-bold">BYTESITE</span> © 2025. Made in India.
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="#" class="text-light-gray me-3 text-decoration-none">Terms</a>
+          <a href="#" class="text-light-gray me-3 text-decoration-none">Privacy</a>
+          <a href="mailto:hello@bytesite.in" class="text-orange text-decoration-none">hello@bytesite.in</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js?v=2025-08-27-1"></script>
+  <script src="assets/js/roadmap.js?v=2025-08-27-1"></script>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="btn btn-orange back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</body>
+</html>
