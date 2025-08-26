@@ -38,11 +38,49 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     showBackToTop();
-  
+
+    // Theme toggle with persistence
+    const body = document.body;
+    const navbar = document.querySelector('.navbar');
+    const themeToggle = document.getElementById('themeToggle');
+    const applyTheme = (mode) => {
+      const isLight = mode === 'light';
+      body.classList.toggle('light-theme', isLight);
+      // Navbar variant switch
+      if (navbar) {
+        navbar.classList.toggle('navbar-light', isLight);
+        navbar.classList.toggle('navbar-dark', !isLight);
+      }
+      // Toggle icon
+      if (themeToggle) {
+        themeToggle.innerHTML = isLight ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+      }
+      localStorage.setItem('theme', mode);
+    };
+
+    // Initialize theme from storage or default to dark
+    const storedTheme = localStorage.getItem('theme');
+    applyTheme(storedTheme ? storedTheme : 'dark');
+
+    themeToggle?.addEventListener('click', () => {
+      const current = body.classList.contains('light-theme') ? 'light' : 'dark';
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    });
+
+    // Scroll-driven background motion (updates CSS var --bg-shift)
+    const updateBgShift = () => {
+      const maxShift = 80; // px, more intensity
+      const y = Math.min(window.scrollY / 8, maxShift);
+      body.style.setProperty('--bg-shift', `${y}px`);
+    };
+    window.addEventListener('scroll', updateBgShift, { passive: true });
+    updateBgShift();
+
     // Active nav link on scroll
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navbar .nav-link[href^="#"]');
-  
+
     const updateActiveLink = () => {
       let currentId = '';
       const offset = 100; // adjust for fixed navbar
@@ -60,6 +98,53 @@
     };
     window.addEventListener('scroll', updateActiveLink);
     updateActiveLink();
+
+    // Scroll Reveal Animations using IntersectionObserver
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+
+      const addReveal = (selector, stagger = 0) => {
+        const items = document.querySelectorAll(selector);
+        items.forEach((el, idx) => {
+          el.classList.add('reveal');
+          if (stagger > 0) el.style.transitionDelay = `${Math.min(idx * stagger, 400)}ms`;
+          observer.observe(el);
+        });
+      };
+
+      // Apply reveals to key blocks
+      addReveal('.hero-content', 0);
+      addReveal('.hero-visual', 0);
+      addReveal('.pillar-card', 60);
+      addReveal('.outcome-item', 60);
+      addReveal('.program-card', 80);
+      addReveal('.step-item', 50);
+      addReveal('.pricing-card', 80);
+      addReveal('.promise-card', 0);
+      addReveal('.accordion-item', 40);
+    }
+
+    // Subtle hero parallax (mouse-based)
+    const hero = document.querySelector('.hero-section');
+    if (hero && !prefersReduced) {
+      const visual = hero.querySelector('.hero-visual');
+      const onMove = (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        visual && (visual.style.transform = `translate3d(${x * 12}px, ${y * 12}px, 0)`);
+      };
+      hero.addEventListener('mousemove', onMove);
+      hero.addEventListener('mouseleave', () => { if (visual) visual.style.transform = ''; });
+    }
   
     // Simple application form handling (no backend yet)
     const form = document.getElementById('applicationForm');

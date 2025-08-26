@@ -11,14 +11,14 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="assets/css/custom.css" rel="stylesheet">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/logo/favicon.ico">
-</head>
-<body>
+ </head>
+ <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation" aria-label="Main navigation">
         <div class="container">
@@ -31,10 +31,15 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs">Internship</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#plans">Plans</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs">Domains</a></li>
+                    <li class="nav-item ms-2 me-1">
+                        <button id="themeToggle" class="btn btn-sm theme-toggle" type="button" aria-label="Toggle color theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
                     <li class="nav-item">
                         <a class="btn btn-orange px-4 py-2 ms-2 rounded-pill" href="#contact">Apply Now</a>
                     </li>
@@ -49,17 +54,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="hero-content">
-                        <div class="badge bg-gradient-orange text-dark mb-4 px-4 py-2 rounded-pill fs-6">
-                            <i class="fas fa-star me-2"></i>Student-first • Fair pricing • Mentor-led
-                        </div>
-                        <h1 class="display-3 fw-bold mb-4 text-white">
-                            Built in India. <br>
-                            <span class="text-gradient-orange">Built for your success.</span>
+                        <h1 class="display-3 fw-bold mb-3 text-white">
+                            From Concept to Carrer with <span class="text-gradient-orange">Bytesite</span>
                         </h1>
-                        <p class="lead mb-4 text-light-gray fs-5">
-                            Affordable, mentor‑led internships (1 & 3 months) that turn learners into contributors, 
-                            with hands‑on projects, reviews, and certification.
-                        </p>
+                        <p class="lead mb-4 text-light-gray fs-5">Let's Grow India Together</p>
                         <div class="trust-strip mb-5">
                             <div class="d-flex flex-wrap gap-3">
                                 <span class="badge bg-dark-card text-orange px-3 py-2">Project‑based</span>
@@ -407,7 +405,7 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing-section py-5">
+    <section id="plans" class="pricing-section py-5">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="display-6 fw-bold text-white mb-3">Simple, Student-Friendly Pricing</h2>

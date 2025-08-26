@@ -41,6 +41,20 @@
     --section-pad-y: 5rem;
   }
   
+  /* ---------- Light Theme Overrides (Reference-style) ---------- */
+  /* Apply by setting <body class="light-theme"> */
+  .light-theme {
+    --bg: #ffffff;
+    --bg-soft: #f9fafb;
+    --card: #ffffff;
+    --card-2: #ffffff;
+    --border: #e5e7eb;
+    --muted: #6b7280;
+    --text: #111827;
+    --shadow: 0 10px 24px rgba(0,0,0,.08);
+    --shadow-soft: 0 6px 16px rgba(0,0,0,.06);
+  }
+  
   /* ---------- Base & Typography ---------- */
   html, body {
     height: 100%;
@@ -54,9 +68,58 @@
     font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
     line-height: 1.6;
   }
+
+  /* Headings: Space Grotesk for techy feel */
+  h1, h2, h3, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+  
+  .light-theme {
+    background:
+      radial-gradient(900px 500px at 50% 0%, rgba(17,24,39,.05), transparent 40%),
+      var(--bg);
+  }
+
+  /* Global animated background layer */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -10% -10% 0 -10%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(600px 400px at 15% 10%, rgba(255,122,24,.15), transparent 60%),
+      radial-gradient(700px 500px at 85% 15%, rgba(59,130,246,.14), transparent 60%),
+      radial-gradient(600px 450px at 50% 95%, rgba(6,182,212,.12), transparent 65%);
+    filter: blur(0.5px) saturate(110%);
+    transform: translate3d(0, var(--bg-shift, 0px), 0);
+    animation: moveBg 18s ease-in-out infinite alternate;
+  }
+  .light-theme::before,
+  .light-theme body::before { display: none; }
+  .light-theme body::before,
+  .light-theme::before { display: block; }
+  .light-theme body::before {
+    background:
+      radial-gradient(600px 400px at 18% 8%, rgba(255,122,24,.18), transparent 60%),
+      radial-gradient(800px 550px at 86% 12%, rgba(59,130,246,.16), transparent 60%),
+      radial-gradient(700px 500px at 50% 100%, rgba(0,0,0,.08), transparent 70%);
+    filter: blur(0.5px) saturate(112%);
+  }
+
+  @keyframes moveBg {
+    0% { transform: translate3d(-18px, calc(var(--bg-shift, 0px) + 0px), 0) scale(1); }
+    100% { transform: translate3d(18px, calc(var(--bg-shift, 0px) - 14px), 0) scale(1.03); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; }
+  }
   
   a { color: var(--text); }
   a:hover { color: #fff; }
+  .light-theme a:hover { color: #111827; }
   
   img { max-width: 100%; height: auto; }
   
@@ -71,6 +134,16 @@
     backdrop-filter: var(--blur);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
+  /* Light navbar */
+  .light-theme .navbar {
+    background: rgba(255,255,255,.85);
+    border-bottom: 1px solid var(--border);
+  }
+  .light-theme .navbar .nav-link { color: #4b5563; }
+  .light-theme .navbar .nav-link:hover,
+  .light-theme .navbar .nav-link.active { color: #111827; }
+  .light-theme .navbar .navbar-toggler { background: rgba(0,0,0,.06); }
+  .light-theme .navbar .text-white { color: #111827 !important; }
   
   .navbar .navbar-brand {
     letter-spacing: .5px;
@@ -79,7 +152,21 @@
   .navbar .nav-link {
     color: var(--muted);
     margin: 0 .3rem;
+    position: relative;
   }
+  /* Animated underline for nav links */
+  .navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--orange), var(--primary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .navbar .nav-link:hover::after,
+  .navbar .nav-link.active::after { transform: scaleX(1); }
   .navbar .nav-link:hover,
   .navbar .nav-link.active {
     color: #fff;
@@ -89,18 +176,31 @@
   .navbar .navbar-toggler {
     background: rgba(255,255,255,.08);
   }
+
+  /* Theme Toggle button */
+  .theme-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 999px; border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    box-shadow: var(--shadow-soft);
+  }
+  .theme-toggle:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+  .light-theme .theme-toggle { color: #111827; }
   
   /* ---------- Buttons ---------- */
   .btn-orange {
     background: linear-gradient(135deg, var(--orange), var(--orange-700));
     color: #111;
     border: none;
-    box-shadow: 0 8px 20px rgba(251,106,0,.35);
+    box-shadow: 0 8px 20px rgba(251,106,0,.35), inset 0 0 0 0 rgba(255,255,255,.0);
   }
   .btn-orange:hover {
     filter: brightness(1.05);
     transform: translateY(-1px);
     color: #111;
+    box-shadow: 0 10px 24px rgba(251,106,0,.45), 0 0 0 4px rgba(251,106,0,.12);
   }
   
   .btn-outline-light {
@@ -122,6 +222,18 @@
     border-color: var(--border) !important;
     box-shadow: var(--shadow-soft);
   }
+  /* Card hover depth */
+  .card, .pillar-card, .program-card, .pricing-card {
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  /* Ensure text inside light cards is dark even if HTML uses text-white */
+  .light-theme .bg-dark-card .text-white { color: var(--text) !important; }
+  .light-theme .bg-dark-card h1,
+  .light-theme .bg-dark-card h2,
+  .light-theme .bg-dark-card h3,
+  .light-theme .bg-dark-card h4,
+  .light-theme .bg-dark-card h5,
+  .light-theme .bg-dark-card h6 { color: var(--text); }
   .border-orange { border-color: rgba(255,122,24,.45) !important; }
   .border-secondary { border-color: var(--border) !important; }
   
@@ -152,6 +264,25 @@
       radial-gradient(1200px 700px at 0% 70%, rgba(255,122,24,.10), transparent 45%);
     overflow: hidden;
   }
+  /* Light hero: clean white with subtle grayscale ridge */
+  .light-theme .hero-section {
+    background:
+      radial-gradient(1100px 500px at 50% 30%, rgba(0,0,0,.05), transparent 55%),
+      linear-gradient(#ffffff, #ffffff);
+  }
+  .light-theme .hero-section .text-white { color: #111827 !important; }
+  .light-theme .text-light-gray { color: #6b7280 !important; }
+  .hero-section .display-3 { line-height: 1.1; }
+  .hero-section .hero-cta .btn { margin-top: .25rem; }
+  .light-theme .btn-outline-light {
+    border-color: #d1d5db;
+    color: #111827;
+  }
+  .light-theme .btn-outline-light:hover {
+    background: #111827;
+    color: #fff;
+    border-color: #111827;
+  }
   
   .hero-pattern {
     position: absolute;
@@ -163,6 +294,15 @@
     mask-image: radial-gradient(1000px 700px at 50% 10%, rgba(0,0,0,.8), transparent 70%);
     pointer-events: none;
   }
+  .light-theme .hero-pattern {
+    background-image:
+      linear-gradient(rgba(0,0,0,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,.035) 1px, transparent 1px);
+    mask-image: radial-gradient(1100px 700px at 50% 5%, rgba(0,0,0,.35), transparent 70%);
+  }
+
+  /* Global text color flips for light mode */
+  .light-theme .text-white { color: #111827 !important; }
   
   /* Floating skill cards animation */
   .floating-cards .card {
@@ -192,6 +332,12 @@
     transform: translateY(-3px);
     box-shadow: var(--shadow);
   }
+  .light-theme .pillar-card,
+  .light-theme .program-card,
+  .light-theme .pricing-card,
+  .light-theme .contact-card {
+    background: #ffffff;
+  }
   
   /* ---------- Outcomes ---------- */
   .outcome-item h5 { margin-bottom: .25rem; }
@@ -220,6 +366,7 @@
     background: var(--card);
     border-bottom: 1px solid var(--border);
   }
+  .light-theme .accordion-dark .accordion-button { color: #111827; }
   .accordion-dark .accordion-button:not(.collapsed) {
     background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
     color: #fff;
@@ -243,6 +390,11 @@
     border: 1px solid var(--border) !important;
     color: var(--text) !important;
   }
+  .light-theme .form-control,
+  .light-theme .form-select {
+    background: #ffffff !important;
+    color: #111827 !important;
+  }
   .form-control:focus, .form-select:focus {
     border-color: var(--orange) !important;
     box-shadow: 0 0 0 .25rem rgba(251,106,0,.15) !important;
@@ -251,6 +403,10 @@
   /* ---------- Footer ---------- */
   .footer-section {
     background: rgba(255,255,255,.02);
+  }
+  .light-theme .footer-section {
+    background: #f9fafb;
+    border-top: 1px solid var(--border);
   }
   
   /* ---------- Back To Top ---------- */
