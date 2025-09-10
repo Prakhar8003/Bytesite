@@ -149,7 +149,7 @@
     // Place the mast note exactly between navbar end and hero content start
     const mast = document.querySelector('.mast-note');
     if (mast) {
-      const placeMast = () => {
+      const placeMastRaw = () => {
         const nav = document.querySelector('.navbar');
         const heroContainer = document.querySelector('.hero-section .container');
         if (!nav || !heroContainer) return;
@@ -161,9 +161,29 @@
         const midY = navBottom + (heroTop - navBottom) / 2;
         mast.style.top = `${midY}px`;
       };
+      // simple debounce to avoid jank while resizing/scrolling
+      let rafId = null;
+      const placeMast = () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(placeMastRaw);
+      };
+      // initial placements
       placeMast();
+      window.addEventListener('load', placeMast, { once: true });
+      // recalc after fonts load (prevents metric shifts)
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(placeMast).catch(() => {});
+      }
       window.addEventListener('resize', placeMast);
       window.addEventListener('scroll', placeMast, { passive: true });
+      // observe size changes on navbar and hero container
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(placeMast);
+        const nav = document.querySelector('.navbar');
+        const heroContainer = document.querySelector('.hero-section .container');
+        nav && ro.observe(nav);
+        heroContainer && ro.observe(heroContainer);
+      }
     }
 
     // Typewriter animation for hero headline (character-by-character), run once on load
