@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BYTESITE Roadmaps</title>
+  <title>BYTESITE</title>
   <meta name="description" content="Choose a domain to view a step-by-step learning and building roadmap." />
 
   <!-- Bootstrap CSS -->
@@ -13,15 +13,23 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <!-- Custom CSS -->
-  <link href="assets/css/custom.css?v=2025-08-27-1" rel="stylesheet" />
+  <link href="assets/css/custom.css?v=2025-09-11-5" rel="stylesheet" />
 
-  <link rel="icon" type="image/x-icon" href="assets/images/logo/favicon.ico" />
+  <!-- Prefer circular SVG with sizes=any so browser can scale cleanly -->
+  <link rel="icon" type="image/svg+xml" sizes="any" href="assets/images/logo/favicon-round.svg?v=2025-09-11-3">
+  <!-- PNG fallbacks -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/logo-light-512.png?v=2025-09-11-3">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/images/logo/logo-light-512.png?v=2025-09-11-3">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/images/logo/logo-light-512.png?v=2025-09-11-3">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/logo/logo-light-512.png?v=2025-09-11-3">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/logo/logo-light-512.png?v=2025-09-11-3">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo/logo-light-512.png?v=2025-09-11-3">
 </head>
 <body>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation" aria-label="Main navigation">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-3" href="index.html#home">
+      <a class="navbar-brand fw-bold fs-3" href="index.html#home" aria-label="Bytesite Home">
         <span class="text-orange">BYTE</span><span class="text-white">SITE</span>
       </a>
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -82,7 +90,7 @@
               <div class="program-icon bg-info text-white rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">
                 <i class="fas fa-cloud"></i>
               </div>
-              <h6 class="text-white mb-0">Cloud Computing</h6>
+              <h6 class="text-white mb-0">Cloud Computation</h6>
             </div>
           </a>
         </div>
@@ -92,7 +100,7 @@
               <div class="program-icon bg-warning text-dark rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">
                 <i class="fas fa-brain"></i>
               </div>
-              <h6 class="text-white mb-0">AI / Prompt</h6>
+              <h6 class="text-white mb-0">GenAI</h6>
             </div>
           </a>
         </div>
@@ -102,7 +110,7 @@
               <div class="program-icon bg-success text-white rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">
                 <i class="fas fa-database"></i>
               </div>
-              <h6 class="text-white mb-0">Data Engineering</h6>
+              <h6 class="text-white mb-0">Data Science</h6>
             </div>
           </a>
         </div>
@@ -161,7 +169,7 @@
 
       <!-- Cloud -->
       <div id="rm-cloud" class="d-none">
-        <h3 class="text-white mb-3"><i class="fas fa-cloud text-info me-2"></i>Cloud Computing Roadmap</h3>
+        <h3 class="text-white mb-3"><i class="fas fa-cloud text-info me-2"></i>Cloud Computation Roadmap</h3>
         <div class="row g-3">
           <div class="col-lg-4">
             <div class="pillar-card bg-dark-card border border-info h-100 p-3 rounded-3">
@@ -196,9 +204,9 @@
         </div>
       </div>
 
-      <!-- AI / Prompt -->
+      <!-- GenAI -->
       <div id="rm-ai" class="d-none">
-        <h3 class="text-white mb-3"><i class="fas fa-brain text-warning me-2"></i>AI / Prompt Roadmap</h3>
+        <h3 class="text-white mb-3"><i class="fas fa-brain text-warning me-2"></i>GenAI Roadmap</h3>
         <div class="row g-3">
           <div class="col-lg-4">
             <div class="pillar-card bg-dark-card border border-warning h-100 p-3 rounded-3">
@@ -233,9 +241,9 @@
         </div>
       </div>
 
-      <!-- Data Engineering -->
+      <!-- Data Science -->
       <div id="rm-data" class="d-none">
-        <h3 class="text-white mb-3"><i class="fas fa-database text-success me-2"></i>Data Engineering Roadmap</h3>
+        <h3 class="text-white mb-3"><i class="fas fa-database text-success me-2"></i>Data Science Roadmap</h3>
         <div class="row g-3">
           <div class="col-lg-4">
             <div class="pillar-card bg-dark-card border border-success h-100 p-3 rounded-3">

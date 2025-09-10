@@ -145,7 +145,87 @@
       hero.addEventListener('mousemove', onMove);
       hero.addEventListener('mouseleave', () => { if (visual) visual.style.transform = ''; });
     }
-  
+
+    // Place the mast note exactly between navbar end and hero content start
+    const mast = document.querySelector('.mast-note');
+    if (mast) {
+      const placeMast = () => {
+        const nav = document.querySelector('.navbar');
+        const heroContainer = document.querySelector('.hero-section .container');
+        if (!nav || !heroContainer) return;
+        const navRect = nav.getBoundingClientRect();
+        const heroRect = heroContainer.getBoundingClientRect();
+        const pageY = window.scrollY || window.pageYOffset;
+        const navBottom = navRect.bottom + pageY;
+        const heroTop = heroRect.top + pageY;
+        const midY = navBottom + (heroTop - navBottom) / 2;
+        mast.style.top = `${midY}px`;
+      };
+      placeMast();
+      window.addEventListener('resize', placeMast);
+      window.addEventListener('scroll', placeMast, { passive: true });
+    }
+
+    // Typewriter animation for hero headline (character-by-character), run once on load
+    const headline = document.querySelector('.letter-animate[data-letters]');
+    if (headline) {
+      if (!prefersReduced) {
+        // Reserve current height to prevent layout shift while typing
+        const initialHeight = headline.getBoundingClientRect().height;
+        headline.style.minHeight = initialHeight + 'px';
+        // Flatten original DOM into a list of { ch, classes[] }
+        const chars = [];
+        const collect = (node, activeClasses = []) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent;
+            for (let i = 0; i < text.length; i++) {
+              chars.push({ ch: text[i], classes: activeClasses });
+            }
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const next = [...activeClasses];
+            if (node.classList && node.classList.length) {
+              // Only pass through classes we care about for styling (keep it simple)
+              if (node.classList.contains('text-gradient-orange')) next.push('text-gradient-orange');
+            }
+            node.childNodes.forEach((child) => collect(child, next));
+          }
+        };
+        headline.childNodes.forEach((n) => collect(n, []));
+
+        // Build type container
+        const container = document.createElement('span');
+        container.className = 'typewriter';
+        const cursor = document.createElement('span');
+        cursor.className = 'type-cursor';
+        headline.innerHTML = '';
+        headline.appendChild(container);
+        headline.appendChild(cursor);
+
+        const speed = 45; // ms per character (a bit faster)
+        container.innerHTML = '';
+        let i = 0;
+        const tick = () => {
+          if (i < chars.length) {
+            const { ch, classes } = chars[i];
+            if (classes && classes.includes('text-gradient-orange')) {
+              const wrap = document.createElement('span');
+              wrap.className = 'text-gradient-orange';
+              wrap.textContent = ch;
+              container.appendChild(wrap);
+            } else {
+              container.appendChild(document.createTextNode(ch));
+            }
+            i++;
+            setTimeout(tick, speed);
+          } else {
+            // Done. Keep final text and gently fade out cursor
+            cursor.classList.add('hide');
+          }
+        };
+        tick();
+      }
+    }
+
     // Simple application form handling (no backend yet)
     const form = document.getElementById('applicationForm');
     form?.addEventListener('submit', (e) => {

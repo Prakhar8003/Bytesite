@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <clipPath id="clipCircle">
+      <circle cx="128" cy="128" r="112" />
+    </clipPath>
+  </defs>
+  <!-- Outer rim to create a clear circular frame in tabs -->
+  <circle cx="128" cy="128" r="124" fill="#111827"/>
+  <circle cx="128" cy="128" r="120" fill="#0b0f14" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+  <!-- Clip the provided PNG to a perfect circle so it never looks square -->
+  <g clip-path="url(#clipCircle)">
+    <image href="logo-light-512.png" x="16" y="16" width="224" height="224" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+</svg>

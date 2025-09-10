@@ -40,6 +40,31 @@
     /* Layout */
     --section-pad-y: 5rem;
   }
+  /* Mast Note (below navbar) */
+  .mast-note {
+    position: absolute; /* will be positioned via JS to the midpoint */
+    left: 0; right: 0;
+    z-index: 5;
+    padding: .2rem 0;
+    margin: 0; /* JS sets top explicitly */
+  }
+  .mast-note .note-inner {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .95rem;
+    letter-spacing: .2px;
+    color: var(--muted);
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 999px;
+    padding: .4rem .9rem;
+    backdrop-filter: saturate(120%) blur(4px);
+  }
+  .light-theme .mast-note .note-inner {
+    background: rgba(0,0,0,.04);
+    border-color: rgba(0,0,0,.08);
+    color: #4b5563;
+  }
   
   /* ---------- Light Theme Overrides (Reference-style) ---------- */
   /* Apply by setting <body class="light-theme"> */
@@ -136,8 +161,11 @@
   }
   /* Light navbar */
   .light-theme .navbar {
-    background: rgba(255,255,255,.85);
+    background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.66));
+    backdrop-filter: saturate(120%) blur(8px);
+    -webkit-backdrop-filter: saturate(120%) blur(8px);
     border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
   }
   .light-theme .navbar .nav-link { color: #4b5563; }
   .light-theme .navbar .nav-link:hover,
@@ -147,8 +175,34 @@
   
   .navbar .navbar-brand {
     letter-spacing: .5px;
+    display: inline-flex;
+    align-items: center;
   }
-  
+  /* Navbar brand mark sizing */
+  .navbar .brand-mark { height: 32px; width: auto; }
+  @media (min-width: 992px) { .navbar .brand-mark { height: 36px; } }
+  .navbar { min-height: inherit; }
+  /* SVG brand sizing */
+  .navbar .brand-svg {
+    height: 52px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.35));
+  }
+  @media (min-width: 992px) {
+    .navbar .brand-svg { height: 68px; }
+  }
+  /* Brand logos (image) */
+  .navbar .brand-logo {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+  .navbar .logo-light { display: none; }
+  /* In light theme, swap */
+  .light-theme .navbar .logo-dark { display: none; }
+  .light-theme .navbar .logo-light { display: block; }
+
   .navbar .nav-link {
     color: var(--muted);
     margin: 0 .3rem;
@@ -176,6 +230,41 @@
   .navbar .navbar-toggler {
     background: rgba(255,255,255,.08);
   }
+
+  /* ---------- Hero letter animation ---------- */
+  .letter-animate .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(2px);
+    transition: opacity .4s ease, transform .4s ease, filter .4s ease;
+  }
+  .letter-animate .char.in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .letter-animate .char { opacity: 1; transform: none; filter: none; }
+  }
+
+  /* Typewriter container and cursor */
+  .typewriter { display: inline; }
+  .type-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: currentColor;
+    margin-left: 4px;
+    vertical-align: -0.08em;
+    animation: cursor-blink 1s step-end infinite;
+  }
+  .type-cursor.hide {
+    animation: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+  }
+  @keyframes cursor-blink { 50% { opacity: 0; } }
 
   /* Theme Toggle button */
   .theme-toggle {
@@ -258,6 +347,7 @@
   /* Tip: This creates a full-screen hero with subtle gradients and an overlaid pattern */
   .hero-section {
     position: relative;
+    /* revert to original spacing so hero content is not moved */
     padding-top: 6rem; /* room for fixed navbar */
     background:
       radial-gradient(1000px 600px at 80% 10%, rgba(59,130,246,.10), transparent 40%),
@@ -332,6 +422,41 @@
     transform: translateY(-3px);
     box-shadow: var(--shadow);
   }
+  /* Pricing alignment */
+  .pricing-section .pricing-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .pricing-section .pricing-header { margin-bottom: 1.25rem; }
+  .pricing-section .pricing-features { margin-bottom: 1.25rem; }
+  .pricing-section .pricing-card .btn { margin-top: auto; }
+  .pricing-section .popular-badge {
+    box-shadow: 0 8px 18px rgba(59,130,246,.25);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  /* Pillars alignment */
+  .pillars-section .pillar-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: .25rem;
+    min-height: 210px;
+  }
+  .pillar-card .pillar-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255,255,255,.04);
+  }
+  .light-theme .pillar-card .pillar-icon { background: rgba(0,0,0,.04); }
+  .pillar-card .pillar-icon i,
+  .pillar-card .pillar-icon span { font-size: 1.75rem !important; line-height: 1; }
+  .pillars-section .pillar-card h4 { margin-bottom: .35rem; }
+  .pillars-section .pillar-card p { margin-bottom: 0; }
   .light-theme .pillar-card,
   .light-theme .program-card,
   .light-theme .pricing-card,

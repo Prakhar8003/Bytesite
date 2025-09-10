@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <clipPath id="clipCircle">
+      <circle cx="128" cy="128" r="120" />
+    </clipPath>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" flood-color="#000" flood-opacity="0.18" />
+    </filter>
+  </defs>
+  <!-- Light background ring to improve visibility on light tab chrome -->
+  <circle cx="128" cy="128" r="124" fill="#ffffff"/>
+  <g clip-path="url(#clipCircle)" filter="url(#shadow)">
+    <image href="logo-light.jpg" x="8" y="8" width="240" height="240" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+  <!-- subtle ring -->
+  <circle cx="128" cy="128" r="120" fill="none" stroke="#111827" stroke-opacity="0.18" stroke-width="4"/>
+</svg>
