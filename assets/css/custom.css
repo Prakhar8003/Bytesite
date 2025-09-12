@@ -46,7 +46,7 @@
     left: 0; right: 0;
     z-index: 5;
     padding: .2rem 0;
-    margin: 0; /* JS sets top explicitly */
+    margin-top: -1rem;
   }
   .mast-note .note-inner {
     display: inline-block;
@@ -212,7 +212,7 @@
   .navbar .nav-link::after {
     content: '';
     position: absolute;
-    left: 0; bottom: -6px;
+    left: 0; bottom: -1px;
     width: 100%; height: 2px;
     background: linear-gradient(90deg, var(--orange), var(--primary));
     transform: scaleX(0);
@@ -421,6 +421,8 @@
   .contact-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow);
+    border-color: var(--orange) !important;
+    cursor: pointer;
   }
   /* Pricing alignment */
   .pricing-section .pricing-card {
@@ -551,8 +553,80 @@
     visibility: visible;
     transform: translateY(0);
   }
+
+  /* Transition for cards smoothly animate back to their original position */
+  .hero-section .hero-visual {
+    transition: transform 0.3s ease-out;
+  }
+  
+  /*  FAQ dropdown arrow is black in light mode. */
+  .light-theme .accordion-dark .accordion-button::after {
+    filter: none;
+  }
+  
+  /* Our Promise Icons Shrinking */
+  .promise-item .promise-icon {
+    flex-shrink: 0;
+  }
   
   /* ---------- Responsive tweaks ---------- */
-  @media (max-width: 991.98px) {
-    .hero-section { padding-top: 5.5rem; }
+@media (max-width: 991.98px) {
+  .mast-note {
+    padding: .1rem 0;
+    margin-top: -3rem;
   }
+  
+  .mast-note .note-inner {
+    font-size: .75rem;
+    padding: .3rem .5rem;
+  }
+
+  .hero-section {
+    padding-top: 12rem;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-link::after {
+    bottom: -1px;
+  }
+
+  .hero-section .display-3 {
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+
+  .trust-strip {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .lead {
+    font-size: 1rem !important;
+    line-height: 1.2;
+  }
+  
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .hero-cta .btn {
+    font-size: 0.9rem;
+    width: 90%;
+    margin-right: 0 !important;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .contact-card .btn {
+    font-size: 0.9rem;
+    margin-right: 0 !important;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .pricing-card .btn {
+    font-size: 0.9rem;
+  }
+}
